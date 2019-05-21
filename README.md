@@ -19,20 +19,20 @@ of memory to Docker using the Docker application settings.
 
  
 
-![](https://github.com/sadams-rti-org/running-janusgraph-locally/blob/master/details/janusgraph-logo-small.png)
+![](https://github.com/sadams-rti-org/running-janusgraph-on-ubuntu/blob/master/details/janusgraph-logo-small.png)
 
 Instructions for installing and using JanusGraph
 ------------------------------------------------
 
-1.  Open a Terminal or Powershell window, depending on your platform
+1.  ssh into your target server
 
 2.  Navigate to where you want to install JanusGraph
 
 3.  Clone this repository, renaming it as desired
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-git clone https://github.com/sadams-rti-org/running-janusgraph-locally
-mv running-janusgraph-locally my-janusgraph
+git clone https://github.com/sadams-rti-org/running-janusgraph-on-ubuntu
+mv running-janusgraph-on-ubuntu my-janusgraph
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 4.  Use one the following commands as desired to run/stop JanusGraph:
