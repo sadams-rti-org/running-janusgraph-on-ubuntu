@@ -55,7 +55,7 @@ authentication: {
   config: {
     defaultUsername: user,
     defaultPassword: password,
-    credentialsDb: /etc/opt/janusgraph/janusgraph.properties
+    credentialsDb: /etc/opt/janusgraph/tinkergraph-credentials.properties
   }
 }
 ssl: {
