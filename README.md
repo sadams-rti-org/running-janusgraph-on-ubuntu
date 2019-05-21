@@ -2,7 +2,7 @@ running-janusgraph-on-ubuntu
 ==========================
 
 Provides the docker-compose scripts and configuration files along with
-instructions on howe to install and run Janusgraph on an ubuntu 18 LTS machine
+instructions on how to install and run Janusgraph on an ubuntu 18 LTS machine
 
  
 
@@ -35,14 +35,16 @@ git clone https://github.com/sadams-rti-org/running-janusgraph-on-ubuntu
 mv running-janusgraph-on-ubuntu my-janusgraph
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-4.  Use one the following commands as desired to run/stop JanusGraph:
+4.  Edit ./details/configs/gremlin-server.yaml to change user and password
+
+5.  Use one the following commands as desired to run/stop JanusGraph:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ./janus-up
 ./janus-down
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-5.  Once you have run JanusGraph, all your data is stored in the ./details/data
+6.  Once you have run JanusGraph, all your data is stored in the ./details/data
     folder. The next time you start JanusGaph, it will attach to this data
     automatically. If you desire to erase this data and start over, use the
     following command:

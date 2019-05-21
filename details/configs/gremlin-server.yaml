@@ -48,3 +48,16 @@ writeBufferHighWaterMark: 65536
 
 threadPoolWorker: 1
 gremlinPool: 8
+
+authentication: {
+  authenticator: org.janusgraph.graphdb.tinkerpop.gremlin.server.auth.JanusGraphSimpleAuthenticator,
+  authenticationHandler: org.apache.tinkerpop.gremlin.server.handler.SaslAuthenticationHandler,
+  config: {
+    defaultUsername: user,
+    defaultPassword: password,
+    credentialsDb: /etc/opt/janusgraph/janusgraph.properties
+  }
+}
+ssl: {
+  enabled: false
+}
