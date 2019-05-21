@@ -4,5 +4,6 @@ then
     rm -rf ./details/data/scylla
     docker volume rm elasticsearch-data
     rm -rf ./details/data/janusgraph
+    echo OK, its erased
 fi
-echo OK, its erased
+echo OK, nothing happened
