@@ -1,0 +1,8 @@
+read -p "Are you sure you want to erase your janusgraph database and index? [YES]"  prompt
+if [ $prompt = "YES" ]
+then
+    rm -rf ./details/data/scylla
+    rm -rf ./details/data/elasticsearch
+    rm -rf ./details/data/janusgraph
+fi
+echo OK, its erased

@@ -1,0 +1,3 @@
+echo Stopping Janusgraph.... to restart, use ./janus-up
+docker-compose -f ./details/janus.yaml down
+echo Stopped... your data is saved in ./details/data.  To erase it, use ./janus-erase

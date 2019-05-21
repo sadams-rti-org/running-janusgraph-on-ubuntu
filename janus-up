@@ -1,0 +1,3 @@
+echo Starting Janusgraph.... to shut down, use ./janus-down
+docker-compose -f ./details/janus.yaml up -d
+echo Janusgraph will be ready to use in about 2 minutes
