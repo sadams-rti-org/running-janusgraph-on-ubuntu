@@ -1,0 +1,17 @@
+version: "3.5"
+
+services:
+  mongo:
+    image: mongo:latest
+    #command: -port 57017
+    container_name: tinkertools-mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - "./data/mongodb:/data/db"
+    networks:
+      - tinkernet
+
+networks:
+  tinkernet:

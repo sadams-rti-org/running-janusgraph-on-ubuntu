@@ -1,0 +1,82 @@
+version: "3.5"
+
+services:
+  janusgraph:
+    image: janusgraph/janusgraph:latest
+    container_name: catapult-janusgraph
+    environment:
+      JAVA_OPTIONS: "-Xms1000m -Xmx4096m -javaagent:/opt/janusgraph/lib/jamm-0.3.0.jar -Dgremlin.io.kryoShimService=org.janusgraph.hadoop.serialize.JanusGraphKryoShimService"
+      JANUS_PROPS_TEMPLATE: cassandra-es
+      janusgraph.storage.backend: cql
+      janusgraph.storage.hostname: catapult-cassandra
+      janusgraph.index.search.hostname: catapult-elastic
+    ports:
+      - "8182:8182"
+    volumes:
+      # bind mounts for configs; use read only so not overridden by environment variables
+      - "./configs:/etc/opt/janusgraph/:ro"
+      - "./configs:/opt/janusgraph/conf/gremlin-server/:ro"
+      - "./data/janusgraph/data:/var/lib/janusgraph/data"
+      - "./data/janusgraph/index:/var/lib/janusgraph/index"
+      - "./graph-io:/opt/janusgraph/graph-io"
+    networks:
+      - catapult-network
+    healthcheck:
+      test: ["CMD", "bin/gremlin.sh", "-e", "scripts/remote-connect.groovy"]
+      interval: 10s
+      timeout: 30s
+      retries: 3
+    depends_on:
+      - scylla
+      - elasticsearch
+
+
+  scylla:
+    image: scylladb/scylla:2.2.0
+    container_name: catapult-scylla
+    ports:
+     # http://docs.scylladb.com/kb/posix/
+     # REST API
+     - "10000:10000"
+     # CQL ports (native_transport_port)
+     - "9042:9042"
+     # Thrift (rpc_port)
+     - "9160:9160"
+     # Internode
+     - "7000:7000"
+     - "7001:7001"
+     # JMX
+     - "7199:7199"
+     # Prometheus monitoring
+     - "9180:9180"
+     - "9100:9100"
+    volumes:
+     - "./data/scylla:/var/lib/scylla"
+    networks:
+      - catapult-network
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.6.0
+    container_name: catapult-elastic
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "http.host=0.0.0.0"
+      - "network.host=0.0.0.0"
+      - "transport.host=127.0.0.1"
+      - "cluster.name=docker-cluster"
+      - "xpack.security.enabled=false"
+      - "discovery.zen.minimum_master_nodes=1"
+    volumes:
+      - "elasticsearch-data:/usr/share/elasticsearch/data"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - catapult-network
+
+
+networks:
+  catapult-network:
+volumes:
+  graph-io:
+  elasticsearch-data:
