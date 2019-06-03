@@ -1,7 +1,7 @@
 host: 0.0.0.0
 port: 8182
 scriptEvaluationTimeout: 600000
-channelizer: org.apache.tinkerpop.gremlin.server.channel.WebSocketChannelizer
+channelizer:  org.janusgraph.channelizers.JanusGraphWebSocketChannelizer
 graphManager: org.janusgraph.graphdb.management.JanusGraphManager
 graphs: {
   graph: /etc/opt/janusgraph/janusgraph.properties,
