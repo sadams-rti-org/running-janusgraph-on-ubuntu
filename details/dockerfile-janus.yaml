@@ -10,6 +10,9 @@ RUN apt-get update && \
 # Copy gremlin-server.yaml to where it needs to go
 COPY ./configs/gremlin-server.yaml /opt/janusgraph/conf/gremlin-server/gremlin-server.yaml
 
+# Copy remote.yaml with user and password
+COPY ./configs/remote.yaml /opt/janusgraph/conf/remote.yaml
+
 # Log4j for gremlin-server needs to go into /opt/janusgraph/conf/gremlin-server
 COPY ./configs/log4j-server.properties /opt/janusgraph/conf/gremlin-server/log4j-server.properties
 

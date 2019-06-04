@@ -56,6 +56,11 @@ The websocket gremlin API will be available at port 8182:
 ws://my-ubuntu-server-after-running-janus-up.com:8182/gremlin
 \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~
 
+To start a gremlin console from the docker host try:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+docker run --rm --network=catapult-network --link catapult-janusgraph:janusgraph -e GREMLIN_REMOTE_HOSTS=janusgraph -it catapult/janusgraph:latest ./bin/gremlin.sh
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 7.  Once you have run JanusGraph, all your data will be stored in docker managed volumes. 
     Gremlin server logs will be written to the ./details/log on the your host machine.
     The next time you start JanusGaph, it will attach to available data
