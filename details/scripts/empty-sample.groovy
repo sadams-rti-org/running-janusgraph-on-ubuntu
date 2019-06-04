@@ -12,5 +12,15 @@ globals << [hook : [
         }
 ] as LifeCycleHook]
 
+if (ConfiguredGraphFactory.templateConfiguration==null){
+        map = new HashMap<String, Object>();
+        map.put("storage.backend","cql");
+        map.put("storage.hostname", "catapult-scylla");
+        map.put("index.search.backend", "elasticsearch");
+        map.put("index.search.hostname", "catapult-elastic");
+        ConfiguredGraphFactory.createTemplateConfiguration(new MapConfiguration(map));
+}
+
+
 // define the default TraversalSource to bind queries to - this one will be named "g".
-globals << [g : graph.traversal()]
+globals << [g : graph.traversal(), g2: graph2.traversal()]

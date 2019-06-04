@@ -1,0 +1,24 @@
+from janusgraph/janusgraph:latest
+
+# For debugging
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends\
+    nano \
+    locate \
+    && updatedb && mkdir -p /opt/janusgraph/log
+
+# Copy gremlin-server.yaml to where it needs to go
+COPY ./configs/gremlin-server.yaml /opt/janusgraph/conf/gremlin-server/gremlin-server.yaml
+
+# Log4j for gremlin-server needs to go into /opt/janusgraph/conf/gremlin-server
+COPY ./configs/log4j-server.properties /opt/janusgraph/conf/gremlin-server/log4j-server.properties
+
+# Additional configs to copy to we will just copy them all
+COPY ./configs/ /etc/opt/janusgraph/
+
+# Copy in the scripts 
+COPY ./scripts/ /opt/janusgraph/scripts/
+
+# Replace entrypoint script so not to mess with configuration files
+COPY ./configs/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh

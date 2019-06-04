@@ -1,9 +1,12 @@
-read -p "Are you sure you want to erase your janusgraph database and index? [YES]"  prompt
-if [ $prompt = "YES" ]
+#!/bin/bash
+read -p "Are you sure you want to erase your janusgraph database, index, logs as well as elasticsearch and scylla backends? " -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    rm -rf ./details/data/scylla
-    docker volume rm elasticsearch-data
-    rm -rf ./details/data/janusgraph
-    echo OK, its erased
+    # Created as root can not remove uness want to run script or this command as root 
+    # rm -rf ./details/log
+    docker volume rm details_jgvolume
+    docker volume rm details_elsvolume
+    docker volume rm details_scyvolume
 fi
-echo OK, nothing happened
+echo OK, its erased

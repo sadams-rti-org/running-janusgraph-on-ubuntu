@@ -1,3 +1,10 @@
+#!/bin/bash
+#if [[ $EUID -ne 0 ]]; then
+#   echo "This script must be run as root"
+#   exit 1
+#fi
 echo Starting Janusgraph.... to shut down, use ./janus-down
+#docker-compose -f ./details/janus.yaml build --no-cache
+docker-compose -f ./details/janus.yaml build
 docker-compose -f ./details/janus.yaml up -d
 echo Janusgraph will be ready to use in about 2 minutes

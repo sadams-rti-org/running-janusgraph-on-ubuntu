@@ -1,0 +1,11 @@
+#!/bin/bash
+# NOTE: You very well may have to restart the docker service after this else iptables will not have entries
+# sudo iptables --list -t nat should show entry for default brigde and new
+docker network create \
+  -o "com.docker.network.bridge.host_binding_ipv4"="0.0.0.0" \
+  -o "com.docker.network.bridge.enable_ip_masquerade"="true" \
+  -o "com.docker.network.bridge.enable_icc"="true" \
+  -o "com.docker.network.driver.mtu"="1500" \
+  -o "com.docker.network.bridge.name"="docker1" \
+  catapult-network
+

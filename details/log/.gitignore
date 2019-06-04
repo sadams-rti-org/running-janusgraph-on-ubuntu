@@ -1,0 +1,5 @@
+# exclude contents of log folder
+*
+
+# keep the foler though
+!.gitignore

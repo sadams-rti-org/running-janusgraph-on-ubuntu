@@ -1,0 +1,17 @@
+version: "3.5"
+
+services:
+ 
+  tinker:
+    image: ssadams/tinkertools
+    container_name: tinkertools-server
+    ports:
+      - "1122:3000"
+    environment:
+      - ROOT_URL=http://tinker
+      - MONGO_URL=mongodb://mongo:27017/tinkertools
+    networks:
+      - tinkernet
+
+networks:
+  tinkernet:
