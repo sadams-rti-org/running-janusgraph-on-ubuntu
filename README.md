@@ -1,9 +1,8 @@
-running-janusgraph-locally
+running-janusgraph-on-ubuntu
 ==========================
 
 Provides the docker-compose scripts and configuration files along with
-instructions on how to install and run Janusgraph on linux like machine
-
+instructions on how to install and run Janusgraph on ubuntu
  
 
 Requirements
