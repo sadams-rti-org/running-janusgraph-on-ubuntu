@@ -1,0 +1,10 @@
+#!/bin/bash
+echo Stopping
+./janus-down
+wait
+echo Removing old data
+./janus-erase
+wait
+echo Starting Janusgraph.... to shut down, use ./janus-down
+./janus-up
+

@@ -1,8 +1,8 @@
-running-janusgraph-on-ubuntu
-============================
+running-janusgraph-locally
+==========================
 
 Provides the docker-compose scripts and configuration files along with
-instructions on how to install and run Janusgraph on an ubuntu 18 LTS machine
+instructions on how to install and run Janusgraph on linux like machine
 
  
 
@@ -19,46 +19,82 @@ of memory to Docker using the Docker application settings.
 
  
 
-![](https://github.com/sadams-rti-org/running-janusgraph-on-ubuntu/blob/master/details/janusgraph-logo-small.png)
+![](https://github.com/sadams-rti-org/running-janusgraph-locally/blob/master/details/janusgraph-logo-small.png)
 
 Instructions for installing and using JanusGraph
 ------------------------------------------------
 
-1.  ssh into your target server
+1.  Open a Terminal (linux or perhaps mac, not currently supported on windows), depending on your platform
 
 2.  Navigate to where you want to install JanusGraph
 
 3.  Clone this repository, renaming it as desired
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-git clone https://github.com/sadams-rti-org/running-janusgraph-on-ubuntu
-mv running-janusgraph-on-ubuntu my-janusgraph
+git clone https://github.com/sadams-rti-org/running-janusgraph-locally
+mv running-janusgraph-locally my-janusgraph
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-4.  Edit ./details/configs/gremlin-server.yaml to change user and password
+4.  Create the network (you only have to do this once)
 
-5.  Use one the following commands as desired to run/stop JanusGraph:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./janus-createnetwork
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+4.  Use one the following commands as desired to run/stop JanusGraph:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ./janus-up
+./janus-fresh = (janus-down, janus-erase, janus-up)
 ./janus-down
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 The websocket gremlin API will be available at port 8182:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ws://my-ubuntu-server-after-running-janus-up.com:8182/gremlin
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~
+ws://localhost:8182/gremlin
+\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~
 
-
-6.  Once you have run JanusGraph, all your data is stored in the ./details/data
-    folder. The next time you start JanusGaph, it will attach to this data
-    automatically. If you desire to erase this data and start over, use the
-    following command:
+5.  Once you have run JanusGraph, all your data will be stored in docker managed volumes. 
+    Gremlin server logs will be written to the ./details/log on the your host machine.
+    The next time you start JanusGaph, it will attach to available data
+    automatically. If you desire to erase this data and start over, use one of the
+    following commands:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-./janus-erase
+./janus-erase or ./janus-fresh (see files for details)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
  
+
+ 
+
+![](https://github.com/sadams-rti-org/running-janusgraph-locally/blob/master/details/tinkertools-logo-small.png)
+
+Instructions for using Tinkertools
+----------------------------------
+
+Optionally, use one of the following commands as desired to run/stop
+Tinkertools, the interactive scripting, editing and visualization tool for
+janusgraph databases:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./tinkertools-up
+./tinkertools-down
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can launch the Tinkertools interface in your browser via http://localhost:1122
+
+Once you have run Tinkertools, your script database will be stored in
+./details/data/mongodb. The next time you start Tinkertools, it will attach to
+this data automatically. If you desire to erase this data and start over, use
+the following command:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./tinkertools-erase
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ You can find short how-to videos for Tinkertools
+[here](https://researchtriangleinstitute.sharepoint.com/sites/ai/Tinkertools%20Videos/Forms/AllItems.aspx)
 
  
 
@@ -66,10 +102,10 @@ Reading and writing graph data to and from files
 ------------------------------------------------
 
 The folder at ./details/graph-io in your installation is bound to
-/opt/janusgraph/graph-io inside the container hosting Janusgraph.  This means
-any file in the ./details/graph-io folder is visible to your Gremlin/Groovy
-scripts at /opt/janusgraph/graph-io.  You can use FTP to move files to and from
-the server hosting Janusgraph.
+/opt/janusgraph/graph-io inside the container hosting Janusgraph. This means any
+file in the ./details/graph-io folder is visible to your Gremlin/Groovy scripts
+at /opt/janusgraph/graph-io. You can use FTP to move files to and from the
+server hosting Janusgraph.
 
  
 
@@ -123,4 +159,3 @@ Which can then be read using:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 graph.io(gryo()).readGraph("/opt/janusgraph/graph-io/my-graph.kryo")
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- 
