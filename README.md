@@ -23,7 +23,7 @@ of memory to Docker using the Docker application settings.
 Instructions for installing and using JanusGraph
 ------------------------------------------------
 
-1.  Open a Terminal (linux or perhaps mac, not currently supported on windows), depending on your platform
+1.  ssh into your target server
 
 2.  Navigate to where you want to install JanusGraph
 
@@ -34,13 +34,16 @@ git clone https://github.com/sadams-rti-org/running-janusgraph-locally
 mv running-janusgraph-locally my-janusgraph
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-4.  Create the network (you only have to do this once)
+4.  Create the network and restart docker service (you only have to do this once). 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ./janus-createnetwork
+sudo service docker restart
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-4.  Use one the following commands as desired to run/stop JanusGraph:
+5.  Edit ./details/configs/gremlin-server.yaml to change user and password
+
+6.  Use one the following commands as desired to run/stop JanusGraph:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ./janus-up
@@ -53,7 +56,7 @@ The websocket gremlin API will be available at port 8182:
 ws://my-ubuntu-server-after-running-janus-up.com:8182/gremlin
 \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~
 
-5.  Once you have run JanusGraph, all your data will be stored in docker managed volumes. 
+7.  Once you have run JanusGraph, all your data will be stored in docker managed volumes. 
     Gremlin server logs will be written to the ./details/log on the your host machine.
     The next time you start JanusGaph, it will attach to available data
     automatically. If you desire to erase this data and start over, use one of the
