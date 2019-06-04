@@ -50,7 +50,7 @@ mv running-janusgraph-locally my-janusgraph
 
 The websocket gremlin API will be available at port 8182:
 \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~
-ws://localhost:8182/gremlin
+ws://my-ubuntu-server-after-running-janus-up.com:8182/gremlin
 \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~
 
 5.  Once you have run JanusGraph, all your data will be stored in docker managed volumes. 
@@ -64,39 +64,6 @@ ws://localhost:8182/gremlin
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
  
-
- 
-
-![](https://github.com/sadams-rti-org/running-janusgraph-locally/blob/master/details/tinkertools-logo-small.png)
-
-Instructions for using Tinkertools
-----------------------------------
-
-Optionally, use one of the following commands as desired to run/stop
-Tinkertools, the interactive scripting, editing and visualization tool for
-janusgraph databases:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-./tinkertools-up
-./tinkertools-down
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-You can launch the Tinkertools interface in your browser via http://localhost:1122
-
-Once you have run Tinkertools, your script database will be stored in
-./details/data/mongodb. The next time you start Tinkertools, it will attach to
-this data automatically. If you desire to erase this data and start over, use
-the following command:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-./tinkertools-erase
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
- You can find short how-to videos for Tinkertools
-[here](https://researchtriangleinstitute.sharepoint.com/sites/ai/Tinkertools%20Videos/Forms/AllItems.aspx)
-
- 
-
 Reading and writing graph data to and from files
 ------------------------------------------------
 
