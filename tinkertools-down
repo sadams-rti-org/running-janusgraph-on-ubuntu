@@ -1,5 +1,0 @@
-#!/bin/bash
-echo Stopping Tinkertools.... to restart, use ./tinkertools-up
-docker-compose -f ./details/tinkertools.yaml down
-docker-compose -f ./details/mongo.yaml down
-echo Stopped... your data is saved in ./details/data

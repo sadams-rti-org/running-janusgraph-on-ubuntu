@@ -1,9 +1,0 @@
-#!/bin/bash
-echo Starting MongoDB for Tinkertools
-docker-compose -f ./details/mongo.yaml up -d
-echo waiting for Mongo to come up ...45 secs....
-sleep 45
-echo Starting Tinkertools, for even more graphie goodness!
-docker-compose -f ./details/tinkertools.yaml up -d
-echo Tinkertools is ready on localhost:1122
-
