@@ -42,6 +42,7 @@ sudo service docker restart
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 5.  Edit ./details/configs/gremlin-server.yaml to change user and password
+5a. Edit ./details/configs/remote.yaml to change user and password
 
 6.  Use one the following commands as desired to run/stop JanusGraph:
 
