@@ -4,7 +4,7 @@ services:
   janusgraph:
     image: catapult/janusgraph:latest
     build:
-      context: .
+      context: ""
       dockerfile: dockerfile-janus.yaml
     container_name: catapult-janusgraph
     #For debugging override entrypoint, will leave container running such that you can bash into it with
@@ -20,7 +20,7 @@ services:
       # volumes and bind mounts for data, logs, io
       - "jgvolume:/var/lib/janusgraph"
       # TO avoid permissions issues run container/janusgraph/gremlin-server.sh as root modify entry script to not step down
-      - "./graph-io:/opt/janusgraph/graph-io"
+      - "/home/catapult/merge-shared-folder:/opt/janusgraph/merge-shared-folder"
       - "./log/janusgraph:/opt/janusgraph/log"
     networks:
       - catapult-network
